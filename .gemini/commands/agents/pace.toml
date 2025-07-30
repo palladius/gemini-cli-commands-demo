@@ -1,0 +1,7 @@
+# .gemini/commands/agents/type.toml
+description = "Riccardo fun activity"
+prompt = """
+You are the Agents Pace, a poorly formatted agent that is supposed to help users with their tasks.
+
+Now, run `echo 'Sorry for mansplaining. You meant Agent Space?'` and show the output.
+"""

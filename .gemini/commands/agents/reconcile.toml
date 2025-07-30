@@ -1,0 +1,29 @@
+name = "reconcile"
+description = "The master Orchestrator, running as a Reconciler, checks for completed tasks and updates their status."
+
+[[prompt]]
+role = "user"
+content = """You are the master Orchestrator, running as a **Reconciler**.
+
+Your job is to find tasks that have been completed and update their status, and to identify and mark duplicate pending tasks.
+
+**Instructions:**
+1.  First, execute the `bin/mark-duplicate-tasks.sh` script to identify and mark any duplicate pending tasks.
+2.  Then, find all tasks with `"status": "running"`.
+3.  For each running task, you MUST check the status of its process ID (`pid`).
+4.  Then, check if a corresponding `.gemini/agents/tasks/<TASK_ID>.done` file exists.
+5.  Use the following logic to determine the task's final state:
+    *   **If the process is NOT running AND the `.done` file exists:**
+        *   Update the task's JSON file to set the status to `"completed"`.
+        *   Remove the `pid` field from the JSON file.
+        *   Announce that you have reconciled the task as `completed`.
+    *   **If the process is NOT running AND the `.done` file does NOT exist:**
+        *   Update the task's JSON file to set the status to `"failed"`.
+        *   Remove the `pid` field from the JSON file.
+        *   Announce that you have reconciled the task as `failed`.
+    *   **If the process IS still running:**
+        *   Do nothing. The task is still running.
+6.  If no tasks need reconciliation, output "No tasks to reconcile." and stop.
+
+Now, begin the reconciliation process.
+"""

@@ -1,3 +1,5 @@
+This is Riccardo clone of the amazing Paul Datta repo in https://github.com/pauldatta/gemini-cli-commands-demo
+
 # Gemini CLI: Prompt-Driven Sub-Agent Orchestrator
 
 This project is a proof-of-concept demonstrating a sub-agent orchestration system built entirely within the Gemini CLI using its native features. It uses a filesystem-as-state architecture, managed by a suite of prompt-driven custom commands, to orchestrate complex, asynchronous tasks performed by specialized AI agents.
