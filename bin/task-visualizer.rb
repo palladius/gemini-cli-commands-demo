@@ -67,7 +67,9 @@ rescue JSON::ParserError => e
   exit 1
 end
 
-puts "\n--- Task Details ---"
+puts "
+[1m[33m--- Task Details ---[0m"
+puts "[90m$ cat #{task_file}[0m"
 puts "Task ID    : #{task_data['taskId']}"
 puts "Status     : #{task_data['status']}"
 puts "Agent      : #{task_data['agent']}"
@@ -85,18 +87,21 @@ puts "Plan File  : #{plan_file} #{(File.exist?(plan_file) ? '(exists)' : '(missi
 done_file = File.join(TASK_DIR, "#{task_data['taskId']}.done")
 puts ".done File : #{done_file} #{(File.exist?(done_file) ? '(exists)' : '(missing)')}"
 
-puts "--------------------\n"
-
-puts "\n✨📜 Log Output ✨📜"
-puts "--------------------\n"
+puts "\n\e[1m\e[33m✨📜 Log Output ✨📜\e[0m"
+puts "\e[90m$ tail -20 #{log_file}\e[0m"
 if File.exist?(log_file)
   puts `tail -20 #{log_file}`
 else
   puts "Log file not found."
 end
 
-puts "\n📝💡 Plan Details 📝💡"
-puts "--------------------\n"
+puts "\n\e[1m\e[33m📝💡 Plan Details 📝💡\e[0m"
+glow_exists = system("which glow > /dev/null 2>&1")
+if glow_exists
+  puts "\e[90m$ glow #{plan_file}\e[0m"
+else
+  puts "\e[90m$ cat #{plan_file}\e[0m"
+end
 if File.exist?(plan_file)
   glow_exists = system("which glow > /dev/null 2>&1")
   if glow_exists

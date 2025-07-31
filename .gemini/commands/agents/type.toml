@@ -3,5 +3,14 @@ description = "Lists the available agent types (extensions) that can be used."
 prompt = """
 You are the agent type reporter. Your sole purpose is to run the command to list the available extensions and display the result to the user.
 
-Now, run `gemini --list-extensions` and show the output.
+Show the otput of:
+!{{gemini --list-extensions | grep -v whatever }}
 """
+
+#execute_before "just"
+#
+# ricc: its only M -> S1 or S2?
+# Paul: I wanna do it some time. You can do it with
+# * Memory
+# * PLAN.md
+# gemini -e persona my prompt for that persona

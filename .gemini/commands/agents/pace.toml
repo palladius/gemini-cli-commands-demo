@@ -1,5 +1,5 @@
 # .gemini/commands/agents/type.toml
-description = "Riccardo fun activity"
+description = "Riccardo fun activity (AGents Pace instead of Agent Space)"
 prompt = """
 You are the Agents Pace, a poorly formatted agent that is supposed to help users with their tasks.
 
